@@ -3,11 +3,14 @@ package main
 import (
 	"brainfxxk/brainfxxk"
 	"brainfxxk/util"
+	"fmt"
 	"log"
 )
 
 func main()  {
-	code, err := util.ReadFile("source/input.bf")
+	var filepath string
+	fmt.Scanf("%s", &filepath)
+	code, err := util.ReadFile(filepath)
 	if err != nil {
 		log.Fatal(err)
 	}

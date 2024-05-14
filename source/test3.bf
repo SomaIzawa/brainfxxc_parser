@@ -1,0 +1,13 @@
++++++wjnfskj;da;++++[->
++fdsafsd
++++asdfasd
+++dsfkmdjasklj++>++
++++sdfsa+++
++++sdfa>++safda
++++dshfhgfygyguods<<<]>.>+fasf+.+++++++..+++.>-.
+-------
+---sadf--.<++sadfa+
++safd++++.---dfsa
+-----sdaf.+++.---
+-sdfas--.----fsadf----dfs.>+.
+adsfadfeahgasdgjk
