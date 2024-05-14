@@ -14,6 +14,17 @@ type Parser struct {
 	LSIndex int
 }
 
+func NewParser(code []string, memorySize int) Parser{
+	return Parser{
+		Code: code,
+		CIndex: 0,
+		Memory: make([]int, memorySize),
+		MIndex: memorySize / 2,
+		LoopStart: make([]int, len(code)/2),
+		LSIndex: -1,
+	}
+}
+
 func (p *Parser) Exec() {
 	for p.CIndex < len(p.Code) {
 		//評価
