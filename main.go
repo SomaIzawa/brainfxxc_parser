@@ -7,12 +7,12 @@ import (
 )
 
 func main()  {
-	code, err := util.ReadFile("source/hello.bf")
+	code, err := util.ReadFile("source/input.bf")
 	if err != nil {
 		log.Fatal(err)
 	}
 	brainfxxk := brainfxxk.Parser{
-		Code: util.ExtractSpecificCharacters(code, []string{"+","-",">","<","[","]","."}),
+		Code: util.ExtractSpecificCharacters(code, []string{"+","-",">","<","[","]",".",","}),
 		CIndex: 0,
 		Memory: make([]int, 16),
 		MIndex: 7,

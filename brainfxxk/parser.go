@@ -38,6 +38,8 @@ func (p *Parser) EvaluateCode(str string) {
 		p.ProcessLoopEnd()
 	case ".":
 		p.Output()
+	case ",":
+		p.Input()
 	}
 }
 
@@ -76,6 +78,14 @@ func (p *Parser) ShowMemory(){
 func (p *Parser) Output(){
 	s := fmt.Sprintf("%c", p.Memory[p.MIndex])
 	fmt.Printf("%s", s)
+	p.next()
+}
+
+func (p *Parser) Input(){
+	var str string
+  fmt.Scan(&str)
+	firstChar := str[0]
+	p.Memory[p.MIndex] = int(firstChar)
 	p.next()
 }
 
