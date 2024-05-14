@@ -83,10 +83,6 @@ func (p *Parser) MCountDown(){
 	p.next()
 }
 
-func (p *Parser) ShowMemory(){
-	fmt.Println(p.Memory)
-}
-
 func (p *Parser) Output(){
 	s := fmt.Sprintf("%c", p.Memory[p.MIndex])
 	fmt.Printf("%s", s)
@@ -120,4 +116,37 @@ func (p *Parser) ProcessLoopEnd()  {
 
 func (p *Parser) next() {
 	p.CIndex++
+}
+
+func (p *Parser) ShowMemory(width int){
+	var head []int
+	var output []int
+	outputWidth := 0
+	height := len(p.Memory) / width + 1
+	fmt.Print("\n\n")
+	println("Memory:")
+	println("")
+	for i, item := range p.Memory {
+		if i % width == 0 && i / width + 1 < height {
+			outputWidth = width
+			util.OutPutLine(outputWidth)
+		} else if i % width == 0 && i / width + 1 >= height {
+			outputWidth = len(p.Memory) % width
+			util.OutPutLine(outputWidth)
+		}
+
+		head = append(head, i)
+		output = append(output, item)
+
+		if (i % width == width - 1 && i / width + 1 < height) ||
+		((i  % width) == (len(p.Memory) % width - 1) && i / width + 1 >= height) {
+			util.OutPutValues(head)
+			util.OutPutLine(outputWidth)
+			util.OutPutValues(output)
+			util.OutPutLine(outputWidth)
+			head = []int{}
+			output = []int{}
+			util.OutPutEmptyLine()
+		}
+	}
 }
