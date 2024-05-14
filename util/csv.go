@@ -1,5 +1,7 @@
 package util
 
+// csv関連の操作
+
 import (
 	"bytes"
 	"fmt"
@@ -23,8 +25,4 @@ func ReadFile(filepath string) (string, error){
 	}
 
 	return buf.String(), nil
-}
-
-func ExtractAndConcat(input, target string) string {
-	panic("this is not implemented")
 }

@@ -1,8 +1,12 @@
 package util
 
+// 文字列の加工
+
 import (
 	"strings"
 )
+
+// 文字列から、特定の文字のみを抜き出します
 
 func ExtractSpecificCharacters(str string, spchars []string) []string {
 	chars := strings.Split(str, "")
@@ -14,6 +18,8 @@ func ExtractSpecificCharacters(str string, spchars []string) []string {
 	}
 	return modifiedStrings
 }
+
+// 1byteの文字を1byteの文字のリストと比較して、一致するものがあるかどうかを判定します
 
 func CompareStrings(target string, compareList []string) bool {
 	for _, compareItem := range compareList {

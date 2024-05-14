@@ -7,13 +7,15 @@ import (
 )
 
 type Parser struct {
-	Code []string
-	CIndex int
-	Memory []int
-	MIndex int
-	LoopStart []int
-	LSIndex int
+	Code []string   // BrainFxxkコードを1byte区切りで分割した文字列配列
+	CIndex int      // コードの実行位置
+	Memory []int    // 記憶領域
+	MIndex int      // 記憶領域のポインタ
+	LoopStart []int // ループの開始位置の記憶領域
+	LSIndex int     // ループの開始位置の記憶領域のポインタ
 }
+
+// コンストラクタ
 
 func NewParser(code string, memorySize int) Parser{
 	return Parser{
@@ -26,6 +28,8 @@ func NewParser(code string, memorySize int) Parser{
 	}
 }
 
+// 実行
+
 func (p *Parser) Exec() {
 	for p.CIndex < len(p.Code) {
 		//評価
@@ -33,6 +37,8 @@ func (p *Parser) Exec() {
 		//p.ShowMemory()
 	}
 }
+
+// 命令評価
 
 func (p *Parser) EvaluateCode(str string) {
 	switch str {
@@ -55,6 +61,24 @@ func (p *Parser) EvaluateCode(str string) {
 	}
 }
 
+// ステップを次へ
+
+func (p *Parser) next() {
+	p.CIndex++
+}
+
+// 各命令に対応する処理
+
+func (p *Parser) MCountUp(){
+	p.Memory[p.MIndex]++
+	p.next()
+}
+
+func (p *Parser) MCountDown(){
+	p.Memory[p.MIndex]--
+	p.next()
+}
+
 func (p *Parser) MPInc(){
 	if p.MIndex != (len(p.Memory) - 1) {
 		p.MIndex++
@@ -70,30 +94,6 @@ func (p *Parser) MPDec(){
 	} else {
 		log.Fatalf("out of index")
 	}
-	p.next()
-}
-
-func (p *Parser) MCountUp(){
-	p.Memory[p.MIndex]++
-	p.next()
-}
-
-func (p *Parser) MCountDown(){
-	p.Memory[p.MIndex]--
-	p.next()
-}
-
-func (p *Parser) Output(){
-	s := fmt.Sprintf("%c", p.Memory[p.MIndex])
-	fmt.Printf("%s", s)
-	p.next()
-}
-
-func (p *Parser) Input(){
-	var str string
-  fmt.Scan(&str)
-	firstChar := str[0]
-	p.Memory[p.MIndex] = int(firstChar)
 	p.next()
 }
 
@@ -114,9 +114,21 @@ func (p *Parser) ProcessLoopEnd()  {
 	}
 }
 
-func (p *Parser) next() {
-	p.CIndex++
+func (p *Parser) Output(){
+	s := fmt.Sprintf("%c", p.Memory[p.MIndex])
+	fmt.Printf("%s", s)
+	p.next()
 }
+
+func (p *Parser) Input(){
+	var str string
+  fmt.Scan(&str)
+	firstChar := str[0]
+	p.Memory[p.MIndex] = int(firstChar)
+	p.next()
+}
+
+// 以下、ディベロッパー用
 
 func (p *Parser) ShowMemory(width int){
 	var head []int
