@@ -16,5 +16,4 @@ func main()  {
 	}
 	brainfxxk := brainfxxk.NewParser(code ,128)
 	brainfxxk.Exec()
-	brainfxxk.ShowMemory(35)
 }
