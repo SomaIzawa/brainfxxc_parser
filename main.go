@@ -14,6 +14,6 @@ func main()  {
 	if err != nil {
 		log.Fatal(err)
 	}
-	brainfxxk := brainfxxk.NewParser(util.ExtractSpecificCharacters(code, []string{"+","-",">","<","[","]",".",","}) ,128)
+	brainfxxk := brainfxxk.NewParser(code ,128)
 	brainfxxk.Exec()
 }

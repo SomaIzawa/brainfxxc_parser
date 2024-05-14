@@ -1,6 +1,7 @@
 package brainfxxk
 
 import (
+	"brainfxxk/util"
 	"fmt"
 	"log"
 )
@@ -14,9 +15,9 @@ type Parser struct {
 	LSIndex int
 }
 
-func NewParser(code []string, memorySize int) Parser{
+func NewParser(code string, memorySize int) Parser{
 	return Parser{
-		Code: code,
+		Code: util.ExtractSpecificCharacters(code, []string{"+","-",">","<","[","]",".",","}),
 		CIndex: 0,
 		Memory: make([]int, memorySize),
 		MIndex: memorySize / 2,
